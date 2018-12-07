@@ -34,12 +34,31 @@ async function main() {
   let average = sum / numOfUsers;
   console.log("Average amount by users with 3 or more apprentices: $", average);
 
-  //Q3 Problem understanding the date
-  usersArray.forEach(user => {
-    // console.log(moment().format(user.created_at));
+  //Q3
+  console.log("Q3");
+  usersSignupin2018Q1 = usersArray.filter(user => {
+    // console.log(moment.unix(user.created_at).format("Q YYYY"));
+    return moment.unix(user.created_at).format("Q YYYY") === "1 2018";
   });
+  console.log(
+    "Number of users signed up Q1 2018: ",
+    usersSignupin2018Q1.length
+  );
 
-  //Q4 Problem understanding the date
+  //Q4
+  console.log("Q4");
+  let usersSignedUpIn2017 = usersArray.filter(user => {
+    return moment.unix(user.created_at).format("YYYY") === "2017";
+  });
+  let usersWhoMadeTheirPaymentsIn2019ButHadAlreadySignedupIn2017 = usersSignedUpIn2017.filter(
+    user => {
+      return moment.unix(user.paid_at).format("YYYY") === "2019";
+    }
+  );
+  console.log(
+    "Number of Payments, made in 2019, made by users who signed in 2017: ",
+    usersWhoMadeTheirPaymentsIn2019ButHadAlreadySignedupIn2017.length
+  );
 
   //Q5
   console.log("Q5");
